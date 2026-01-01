@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chat type</title>
+  <style>
+    
+    body {
+      margin: 0;
+      padding: 0;
+      background: #fffaf0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+  margin-bottom: 40px;
+  color: #333;
+  font-weight: 700;
+  font-size: 36px;
+  text-align: center;
+}
+
+    .container {
+      display: flex;
+      gap: 40px;
+    }
+
+    .chat-option {
+      width: 180px;
+      height: 220px;
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .chat-option:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .chat-option img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+    }
+
+    .chat-option span {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+    
+  </style>
+</head>
+<body>  
+  <h1>Ce fel de chat vrei să creezi?</h1>
+  <div class="container">
+    <div class="chat-option" onclick="location.href='telegram/loading.html'">
+      <img src="img/telegram.png" alt="Telegram" />
+      <span>Telegram</span>
+    </div>
+    <div class="chat-option" onclick="location.href='instagram/instagram.html'">
+      <img src="img/instagram.png" alt="Instagram" />
+      <span>Instagram</span>
+    </div>
+    <div class="chat-option" onclick="location.href='viber/loading.html'">
+      <img src="img/viber.png" alt="Viber" />
+      <span>Viber</span>
+    </div>
+  </div>
+</body>
+</html>

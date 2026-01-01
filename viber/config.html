@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+	<meta charset="UTF-8">
+	<title>Setări Chat Fake Viber</title>
+	<style>
+    
+		body {
+      margin: 0;
+      background-color: #e6d6f7;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    .form-box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      width: 420px;
+      margin-top: 60px; 
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+    }
+
+    .image-input-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 7px;
+      margin-bottom: 7px;
+    }
+
+    .image-input-wrapper input[type="text"] {
+      flex: 1;
+    }
+
+    .image-input-wrapper img {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      opacity: 0.65;
+      transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
+    }
+
+    .image-input-wrapper img:hover {
+      transform: scale(1.2);
+      opacity: 1;
+      filter: brightness(1.2);
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    #startChatBtn {
+      width: 100%;
+      margin-top: 25px;
+      padding: 12px;
+      background-color: #7c3aed;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    #startChatBtn:hover {
+      background-color: #5b21b6
+    }
+
+    .lang-switcher-container {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      z-index: 100;
+    }
+
+    .lang-switcher {
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      padding: 5px 10px;
+      color: #000;
+      transition: all 0.2s;
+      border-radius: 15px;
+    }
+
+    .lang-btn.active {
+      background: #7c3aed;
+      color: white;
+    }
+
+    .lang-btn:not(.active):hover {
+      background: #e8d8fa;
+    }
+
+    .input-box {
+      position: relative;
+      margin: 0;
+      width: 351px;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid #ccc;
+      border-radius: 10px;
+      font-size: 10px;
+      outline: none;
+    }
+
+    .input-box .user-label {
+      position: absolute;
+      left: 15px;
+      top: -15px;
+      font-size: 14px;
+      transform: translateY(1rem);
+      color: #9e9e9e;
+      pointer-events: none;
+      transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .input-box input:focus,
+    .input-box input:valid {
+      outline: none;
+      border: 1.5px solid #000000;
+    }
+
+      .input-box input:focus ~ .user-label,
+      .input-box input:valid ~ .user-label {
+        transform: translate(-12px, -20%) scale(0.8);
+        background-color: #ffffff;
+        padding: 0 0.2em;
+        color: #000000;
+      }
+
+  </style>
+</head>
+<body>
+
+<div class="lang-switcher-container">
+  <div class="lang-switcher">
+    <button data-lang="ro" class="lang-btn active">RO</button>
+    <button data-lang="ru" class="lang-btn">RU</button>
+    <button data-lang="en" class="lang-btn">EN</button>
+  </div>
+</div>
+
+<div class="form-box">
+  <h2 id="configTitle">Configurează Chatul</h2>
+
+  <div class="input-box">
+    <input type="text" id="myName" required>
+    <label for="myName" class="user-label" id="myNameLabel">Numele tău</label>
+  </div>
+
+  <div class="image-input-wrapper">
+    <input type="text" id="myImageLink" placeholder="Imaginea ta, link sau upload file">
+    <img src="Vimg/upload.png" alt="Upload" onclick="document.getElementById('myImageFile').click()">
+  </div>
+  <input type="file" id="myImageFile" accept="image/*" onchange="handleFileChosen('my')">
+
+  <div class="input-box">
+    <input type="text" id="otherName" required>
+    <label for="otherName" class="user-label" id="otherNameLabel">Numele celeilalte persoane</label>
+  </div>
+
+  <div class="image-input-wrapper">
+    <input type="text" id="otherImageLink" placeholder="Imaginea celuilalt, link sau upload file">
+    <img src="Vimg/upload.png" alt="Upload" onclick="document.getElementById('otherImageFile').click()">
+  </div>
+  <input type="file" id="otherImageFile" accept="image/*" onchange="handleFileChosen('other')">
+
+  <button id="startChatBtn">Începe Chatul</button>
+</div>
+
+<script>
+
+  const translations = {
+    ro: {
+      configTitle: "Configurează Chatul",
+      myNameLabel: "Numele tău",
+      otherNameLabel: "Numele celeilalte persoane",
+      startChatBtn: "Începe Chatul",
+      myImagePlaceholder: "Imaginea ta, link sau upload file",
+      otherImagePlaceholder: "Imaginea celuilalt, link sau upload file",
+      fileAdded: "Fișier adăugat",
+      defaultMyName: "Tu",
+      defaultOtherName: "Andrei"
+    },
+    ru: {
+      configTitle: "Настройки Чата",
+      myNameLabel: "Ваше имя",
+      otherNameLabel: "Имя собеседника",
+      startChatBtn: "Начать Чат",
+      myImagePlaceholder: "Ваше фото, ссылка или загрузить файл",
+      otherImagePlaceholder: "Фото собеседника, ссылка или загрузить файл",
+      fileAdded: "Файл добавлен",
+      defaultMyName: "Вы",
+      defaultOtherName: "Андрей"
+    },
+    en: {
+      configTitle: "Configure Chat",
+      myNameLabel: "Your name",
+      otherNameLabel: "Other person's name",
+      startChatBtn: "Start Chat",
+      myImagePlaceholder: "Your image, link or upload file",
+      otherImagePlaceholder: "Other's image, link or upload file",
+      fileAdded: "File added",
+      defaultMyName: "You",
+      defaultOtherName: "Andrew"
+    }
+  };
+
+  let currentLang = 'ro';
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    const t = translations[lang];
+
+  document.getElementById('configTitle').textContent = t.configTitle;
+  document.getElementById('myNameLabel').textContent = t.myNameLabel;
+  document.getElementById('otherNameLabel').textContent = t.otherNameLabel;
+  document.getElementById('startChatBtn').textContent = t.startChatBtn;
+  document.getElementById('myImageLink').placeholder = t.myImagePlaceholder;
+  document.getElementById('otherImageLink').placeholder = t.otherImagePlaceholder;
+    
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.getAttribute('data-lang') === lang) {
+        btn.classList.add('active');
+      }
+    });
+  }
+
+	document.addEventListener('DOMContentLoaded', function() {
+		setLanguage('ro');
+		document.querySelectorAll('.lang-btn').forEach(btn => {
+			btn.addEventListener('click', function() {
+				const lang = this.getAttribute('data-lang');
+				setLanguage(lang);
+			});
+		});
+		document.getElementById('startChatBtn').addEventListener('click', startChat);
+	});
+
+	function handleFileChosen(who) {
+		const inputField = document.getElementById(who + 'ImageLink');
+		const fileInput = document.getElementById(who + 'ImageFile');
+		const t = translations[currentLang];
+		if (fileInput.files.length > 0) {
+			inputField.value = t.fileAdded;
+			inputField.readOnly = true;
+		}
+	}
+
+	function readImage(file, fallbackLink, callback) {
+		if (file) {
+			const reader = new FileReader();
+			reader.onload = function (e) {
+				callback(e.target.result);
+			};
+			reader.readAsDataURL(file);
+		} else {
+			callback(fallbackLink || '');
+		}
+	}
+
+	function startChat() {
+		const t = translations[currentLang];
+		const myName = document.getElementById('myName').value || t.defaultMyName;
+		const myLink = document.getElementById('myImageLink').value;
+		const myFile = document.getElementById('myImageFile').files[0];
+		const otherName = document.getElementById('otherName').value || t.defaultOtherName;
+		const otherLink = document.getElementById('otherImageLink').value;
+		const otherFile = document.getElementById('otherImageFile').files[0];
+		readImage(myFile, myLink || '../img/eu.jpg', function(myImage) {
+			readImage(otherFile, otherLink || '../img/el.jpg', function(otherImage) {
+				const data = {
+					myName: myName,
+					myImage: myImage,
+					otherName: otherName,
+					otherImage: otherImage,
+					language: currentLang
+				};
+				localStorage.setItem('chatData', JSON.stringify(data));
+				window.location.href = 'viber.html';
+			});
+		});
+	}
+</script>
+
+</body>
+</html>

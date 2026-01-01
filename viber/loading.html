@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Viber Animation</title>
+  <style>
+body {
+  height: 100vh;
+  margin: 0;
+  background: #e6d6f7;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+h1 {
+  display: flex;
+  gap: 5px;
+  font-size: 74px;
+  font-weight: bold;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+h1 span {
+  display: inline-block;
+  animation: ripple 1.2s ease-in-out infinite;
+}
+
+h1 span:nth-child(1) { animation-delay: 0s; }
+h1 span:nth-child(2) { animation-delay: 0.1s; }
+h1 span:nth-child(3) { animation-delay: 0.2s; }
+h1 span:nth-child(4) { animation-delay: 0.3s; }
+h1 span:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes ripple {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    color: white;
+  }
+  50% {
+    transform: translateY(-15px) scale(1.2);
+    color: #7c3aed;
+    text-shadow: 0 4px 10px #7c3aed;
+  }
+}
+  </style>
+</head>
+<body>
+  <h1>
+    <span>V</span>
+    <span>i</span>
+    <span>b</span>
+    <span>e</span>
+    <span>r</span>
+  </h1>
+
+  <script>
+    setTimeout(() => {
+      window.location.href = "config.html";
+    }, 3500);
+  </script>
+</body>
+</html>
+</body>
+</html>

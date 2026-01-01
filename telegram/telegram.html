@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fake Telegram Chat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="lang-switcher-container">
+  <div class="lang-switcher">
+    <button data-lang="ro" class="lang-btn active">RO</button>
+    <button data-lang="ru" class="lang-btn">RU</button>
+    <button data-lang="en" class="lang-btn">EN</button>
+  </div>
+</div>
+
+<div class="icon-box">
+  <div class="new-chat"> 
+    <img id="newchatIcon" src="Timg/new-chat.png" alt="Chat nou" />
+  </div> 
+  <img id="deleteAllBtn" src="Timg/bin.png" alt="Șterge toate mesajele">
+  <img id="screenshotIcon" src="Timg/screenshot.png" alt="Screenshot" />
+  <img id="notesIcon" src="Timg/notes.png" alt="Notite" />
+  <img id="changebackgroundIcon" src="Timg/change-background.png" alt="Schimbă fonul" />
+</div>
+
+<div id="confirmOverlay">
+  <div id="confirmBox">
+    <p class="deleteAllQuestion">Ești sigur că vrei să ștergi toate mesajele?</p>
+    <div class="buttons">
+        <button id="confirmNo" class="deleteAllCancel">Nu</button>      
+        <button id="confirmYes" class="deleteAllConfirm">Da</button>
+    </div>
+  </div>
+</div>
+
+<div id="notesBox" class="draggable-notes" style="display:none;">
+  <div class="notes-header">
+    <span>Notițe</span>
+    <button id="closeNotes">×</button>
+  </div>
+  <textarea id="notesText" placeholder="Scrie aici "></textarea>
+  <div class="notes-footer">
+    <button id="saveNotes">Salvează</button>
+    <button id="clearNotes">Șterge</button>
+  </div>
+</div>
+
+<div id="date-modal-backdrop" class="date-modal-backdrop"></div>
+<div id="date-modal" class="date-modal">
+  <button class="date-close-btn">×</button>
+  <span class="date-modal-label">Setează data:</span>
+  <input type="text" id="date-input" class="date-modal-input" value="">
+  <button id="save-date-btn" class="date-modal-btn">Salvează</button>
+</div>
+
+<div class="categories-open">
+  <img id="OpenCategories" src="Timg/arrow-down.png" alt="Deschide categoriile" />
+</div> 
+
+<div class="role-changebox">
+  <img id="roleToggleIcon" src="Timg/change.png" alt="Schimbă rolul" />
+</div>  
+
+  <div class="chat-window">
+    <div class="chat-header">
+      <div class="back-arrow">
+        <img src="Timg/back-arrow.png" alt="Back" width="20" height="20" />
+      </div>
+
+      <img src="Timg/man.png" alt="Avatar" class="avatar" />
+      <div class="info">
+        <div class="name"></div>
+        <div class="status"></div>
+      </div>
+      <div class="icons">
+        <img src="Timg/phone.png" alt="Phone" width="22" height="22" />
+        <img src="Timg/dots.png" alt="Menu" width="22" height="22" />
+      </div>
+    </div>
+
+ <div class="chat-body" id="chat-body">
+  <div class="date-label" id="chatDate"> 
+  </div>
+ </div>
+
+    <div id="replyPreview" style="display:none; border-left: 3px solid #4caf50; padding: 6px 10px; margin: 5px 10px; font-size: 13px; background:#f0f0f0; border-radius: 4px; position: relative;">
+  <span id="replyText"></span>
+  <span id="cancelReply" style="position:absolute; right:6px; top:4px; cursor:pointer;">×</span>
+</div>
+
+    <div class="chat-input">
+      <img src="Timg/sticker.png" alt="Emoji" id="emojiIcon" class="emoji-default" />
+      <input type="text" id="msg" placeholder="Сообщение" />
+      <img src="Timg/clip.png" alt="Atașează" />
+      <img src="Timg/micro.png" alt="Microfon" id="microIcon" class="micro-default" />
+      <img src="Timg/send.png" alt="Trimite" id="sendIcon" style="display:none; margin-left:5px; width:22px; height:22px; cursor:pointer;" />
+    </div>
+  </div>
+
+    <div class="settings-window">
+    <h2>Setări mesaje</h2>
+    <div class="setting-group">
+      <label for="fontSizeRange">Mărime text mesaje</label>
+      <input type="range" id="fontSizeRange" min="12" max="30" value="16" />
+      <span id="fontSizeValue">16</span>
+    </div>
+
+    <div class="setting-group">
+      <label for="radiusRange">Colțuri mesaje</label>
+      <input type="range" id="radiusRange" min="1" max="17" value="10" />
+      <span id="radiusValue">10</span>
+    </div>
+  </div>
+
+<div id="backgroundMenu" class="background-menu" style="display:none;"> 
+  <div class="bg-mode-switch">
+    <button id="setDayBgBtn" class="bg-mode-btn active">Ziua</button>
+    <button id="setNightBgBtn" class="bg-mode-btn">Noapte</button>
+  </div>
+
+  <div class="background-options">
+    <img src="Timg/fundal1.jpg" alt="Fundal 1" class="bg-option" />
+    <img src="Timg/fundal2.jpg" alt="Fundal 2" class="bg-option" />
+    <img src="Timg/fundal3.jpg" alt="Fundal 3" class="bg-option" />
+    <img src="Timg/fundal4.jpg" alt="Fundal 4" class="bg-option" />
+    <img src="Timg/fundal5.jpg" alt="Fundal 5" class="bg-option" />
+    <img src="Timg/fundal6.jpg" alt="Fundal 6" class="bg-option" />
+    <img src="Timg/fundal7.jpg" alt="Fundal 7" class="bg-option" />
+    <img src="Timg/fundal8.jpg" alt="Fundal 8" class="bg-option" />
+    <img src="Timg/fundal9.jpg" alt="Fundal 9" class="bg-option" />
+    <img src="Timg/fundal10.jpg" alt="Fundal 10" class="bg-option" />
+    <img src="Timg/fundal11.jpg" alt="Fundal 11" class="bg-option" />
+    <img src="Timg/fundal12.jpg" alt="Fundal 12" class="bg-option" />
+    <img src="Timg/fundal13.jpg" alt="Fundal 13" class="bg-option" />
+    <img src="Timg/fundal14.jpg" alt="Fundal 14" class="bg-option" />
+    <img src="Timg/fundal15.jpg" alt="Fundal 15" class="bg-option" />
+    <img src="Timg/fundal16.jpg" alt="Fundal 16" class="bg-option" />
+    <img src="Timg/fundal17.jpg" alt="Fundal 17" class="bg-option" />
+    <img src="Timg/fundal18.jpg" alt="Fundal 18" class="bg-option" />
+    <div class="bg-option custom-bg-option" id="customBackgroundBtn" title="Încarcă fundal personalizat">
+    <img src="Timg/add-img.png" alt="Fundal personalizat" class="custom-bg-icon">
+  </div>
+</div> 
+</div> 
+
+  <div class="theme-toggle">
+    <label class="switch">
+      <input type="checkbox" id="checkbox" />
+      <span class="slider">
+        <div class="star star_1"></div>
+        <div class="star star_2"></div>
+        <div class="star star_3"></div>
+        <svg viewBox="0 0 16 16" class="cloud cloud_1">
+          <path
+            transform="matrix(.77976 0 0 .78395-299.99-418.63)"
+            fill="#fff"
+            d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925"
+          ></path>
+        </svg>
+      </span>
+    </label>
+  </div>
+
+
+  
+
+<div class="modal-backdrop" id="modalBackdrop"></div>
+<div class="modal" id="timeModal">
+  <div class="modal-header">
+    <button id="closeTimeModal" aria-label="Închide fereastra" title="Închide" class="close-btn">×</button>
+  </div>
+  <label for="newTime" class="modal-label">Setează ora:</label>
+  <input type="text" id="newTime" />
+  <button id="saveTime">Salvează</button>
+</div>
+
+  <div id="contextMenu" style="display:none; position:absolute; z-index:1000; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.15); min-width:120px; font-size:15px;">
+    <button id="replyMsg" style="padding:8px 16px; cursor:pointer;">Răspunde </button>
+    <div id="deleteMsg" style="padding:8px 16px; cursor:pointer;">Șterge mesajul</div>
+    <div id="editMsg" style="padding:8px 16px; cursor:pointer;">Schimbă mesajul</div>
+  </div>
+
+<svg width="0" height="0" style="position: absolute;">
+  <defs>
+    <clipPath id="squircleClip" clipPathUnits="objectBoundingBox">
+      <path d="M 0,0.5 C 0,0 0,0 0.5,0 S 1,0 1,0.5 1,1 0.5,1 0,1 0,0.5"></path>
+    </clipPath>
+  </defs>
+</svg>
+<div class="social-buttons-bottom-left">
+  <div class="social-btns-main-box">
+    <div class="social-btn-group">
+  <div class="social-btn telegram"><a href="../telegram/config.html" class="social-btn-inner" title="Telegram"><img src="../img/telegram1.png" alt="Telegram" class="social-btn-icon" /></a></div>
+  <div class="social-btn instagram"><a href="../instagram/config.html" class="social-btn-inner" target="_blank" rel="noopener" title="Instagram"><img src="../img/instagram1.png" alt="Instagram" class="social-btn-icon" /></a></div>
+  <div class="social-btn viber"><a href="../viber/config.html" class="social-btn-inner" title="Viber"><img src="../img/viber1.png" alt="Viber" class="social-btn-icon" /></a></div>
+  <div class="social-btn home"><a href="../index.html" class="social-btn-inner" title="Home"><img src="../img/home.png" alt="Home" class="social-btn-icon" /></a></div>
+    </div>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

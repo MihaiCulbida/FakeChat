@@ -25,3 +25,8 @@ A fake chat generator, styled after **Telegram** and **Viber** (plus an Instagra
 - Quick screenshot button for the conversation
 - Fast navigation between chat types (Telegram / Instagram / Viber / Home)
 
+## Tech
+
+- HTML, CSS, JavaScript
+- localStorage for saving preferences (language, custom backgrounds, etc.)
+

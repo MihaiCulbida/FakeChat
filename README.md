@@ -34,3 +34,5 @@ A fake chat generator, styled after **Telegram** and **Viber** (plus an Instagra
 
 This project is for recreational/demo purposes (memes, presentations, UI testing). Don't use it to create fake screenshots passed off as real conversations, since that can mislead people.
 
+## Try it
+Live at: https://mihaiculbida.github.io/FakeChat/

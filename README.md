@@ -10,3 +10,11 @@ A fake chat generator, styled after **Telegram** and **Viber** (plus an Instagra
 - Context menu on messages: Reply, Delete, Edit
 - Delete all messages, with a confirmation popup
 - Switch roles (who's "me" and who's the other person) with one click
+
+**Customization**
+- Manually set a message's time (dedicated modal)
+- Manually set the conversation's date
+- Change the chat background: day/night presets plus custom upload
+- Slider for message text size
+- Slider for message bubble corner roundness
+- Animated day/night toggle for the whole interface theme

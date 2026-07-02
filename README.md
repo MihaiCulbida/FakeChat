@@ -18,3 +18,10 @@ A fake chat generator, styled after **Telegram** and **Viber** (plus an Instagra
 - Slider for message text size
 - Slider for message bubble corner roundness
 - Animated day/night toggle for the whole interface theme
+
+**Other**
+- Multi-language support: RO / RU / EN, quick switch from the header
+- Notes panel (draggable, save/clear text)
+- Quick screenshot button for the conversation
+- Fast navigation between chat types (Telegram / Instagram / Viber / Home)
+

@@ -30,3 +30,7 @@ A fake chat generator, styled after **Telegram** and **Viber** (plus an Instagra
 - HTML, CSS, JavaScript
 - localStorage for saving preferences (language, custom backgrounds, etc.)
 
+## Note
+
+This project is for recreational/demo purposes (memes, presentations, UI testing). Don't use it to create fake screenshots passed off as real conversations, since that can mislead people.
+
